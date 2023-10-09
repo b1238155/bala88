@@ -37,13 +37,13 @@ jobs:
         # Configure SSH using the private key stored as a secret
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        
+    
         # Add the server's SSH fingerprint to known_hosts
-        ssh-keyscan -H target_server_ip_or_domain >> ~/.ssh/known_hosts
-      
+        ssh-keyscan -H 16.170.202.10 >> ~/.ssh/known_hosts  # Use the correct IP address
+    
         # Deploy your code to the server using SSH commands
         # Example: scp, rsync, or any other deployment commands
         # Replace the following line with your actual deployment command
-        ssh -i ~/.ssh/id_rsa ec2-user@target_server_ip_or_domain "echo 'Deployment Successful!'"
+        ssh -i ~/.ssh/id_rsa ec2-user@16.170.202.10 "echo 'Deployment Successful!'"  # Use the correct IP address
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
