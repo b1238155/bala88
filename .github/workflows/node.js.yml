@@ -34,16 +34,16 @@ jobs:
 
     - name: Deploy to Server
       run: |
-        # Create the .ssh directory if it doesn't exist
+        # Create the .ssh directory if it doesn't exist (with -p flag)
         mkdir -p ~/.ssh
-        
+    
         # Configure SSH using the private key stored as a secret
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        
+    
         # Add the server's SSH fingerprint to known_hosts
         ssh-keyscan -H 16.170.202.10 >> ~/.ssh/known_hosts  # Use the correct IP address
-        
+    
         # Deploy your code to the server using SSH commands
         # Example: scp, rsync, or any other deployment commands
         # Replace the following line with your actual deployment command
